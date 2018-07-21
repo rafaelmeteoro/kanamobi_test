@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">KanamobiTest</string>
     <string name="host_api">Algumacoisa</string>
+
+    <string name="component_empty_label">Nenhum resultado encontrado</string>
+    <string name="component_error_label">Ocorreu um erro</string>
 </resources>
