@@ -9,7 +9,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class LibrayModule(private val context: Context) {
+class LibraryModule(private val context: Context) {
 
     @Provides
     @Singleton
