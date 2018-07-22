@@ -4,10 +4,7 @@ import android.arch.lifecycle.LifecycleOwner
 import com.meteoro.kanamobitest.core.di.PerActivity
 import com.meteoro.kanamobitest.core.lifecycle.AutomaticUnsubscriber
 import com.meteoro.kanamobitest.core.lifecycle.LifecycleUnsubscriber
-import com.meteoro.kanamobitest.ui.pullrequests.domain.interactor.GetPullRequests
-import com.meteoro.kanamobitest.ui.pullrequests.domain.interactor.GetPullRequestsImpl
-import com.meteoro.kanamobitest.ui.pullrequests.domain.interactor.ShowLoadingPullRequests
-import com.meteoro.kanamobitest.ui.pullrequests.domain.interactor.ShowLoadingPullRequestsImpl
+import com.meteoro.kanamobitest.ui.pullrequests.domain.interactor.*
 import com.meteoro.kanamobitest.ui.pullrequests.presentation.PullRequestsActivity
 import com.meteoro.kanamobitest.ui.pullrequests.presentation.PullRequestsContract
 import com.meteoro.kanamobitest.ui.pullrequests.presentation.PullRequestsPresenter
@@ -40,4 +37,12 @@ class PullRequestsModule(private val activity: PullRequestsActivity) {
     @Provides
     @PerActivity
     fun getPullRequests(impl: GetPullRequestsImpl): GetPullRequests = impl
+
+    @Provides
+    @PerActivity
+    fun convertPullRequests(impl: ConvertPullRequestsImpl): ConvertPullRequests = impl
+
+    @Provides
+    @PerActivity
+    fun showData(impl: ShowDataImpl): ShowData = impl
 }

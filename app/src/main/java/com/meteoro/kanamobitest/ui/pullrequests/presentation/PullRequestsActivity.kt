@@ -10,6 +10,7 @@ import com.meteoro.kanamobitest.R
 import com.meteoro.kanamobitest.application.MyApplication
 import com.meteoro.kanamobitest.ui.pullrequests.di.DaggerPullRequestsComponent
 import com.meteoro.kanamobitest.ui.pullrequests.di.PullRequestsModule
+import com.meteoro.kanamobitest.ui.pullrequests.domain.model.PullRequestData
 import com.meteoro.kanamobitest.ui.pullrequests.presentation.data.CallData
 import kotlinx.android.synthetic.main.activity_pull_requests.*
 import javax.inject.Inject
@@ -74,6 +75,18 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestsContract.View {
 
     override fun showLoading() {
         stateView.viewState = MultiStateView.VIEW_STATE_LOADING
+    }
+
+    override fun showEmpty() {
+        stateView.viewState = MultiStateView.VIEW_STATE_EMPTY
+    }
+
+    override fun showData(data: PullRequestData) {
+        stateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+    }
+
+    override fun showError() {
+        stateView.viewState = MultiStateView.VIEW_STATE_ERROR
     }
 
     companion object {
