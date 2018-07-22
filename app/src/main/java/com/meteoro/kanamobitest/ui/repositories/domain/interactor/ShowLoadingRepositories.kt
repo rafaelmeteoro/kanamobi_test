@@ -1,4 +1,4 @@
-package com.meteoro.kanamobitest.ui.repositories.domain
+package com.meteoro.kanamobitest.ui.repositories.domain.interactor
 
 import com.meteoro.kanamobitest.core.di.qualifers.UiScheduler
 import com.meteoro.kanamobitest.ui.repositories.presentation.RepositoriesContract

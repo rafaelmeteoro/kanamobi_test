@@ -1,19 +1,22 @@
 package com.meteoro.kanamobitest.ui.repositories.presentation.coordinator
 
-import com.meteoro.kanamobitest.core.data.RepositoryDataResponse
-import com.meteoro.kanamobitest.ui.repositories.domain.GetRepositories
-import com.meteoro.kanamobitest.ui.repositories.domain.ShowLoadingRepositories
+import com.meteoro.kanamobitest.ui.repositories.domain.interactor.ConvertRepositories
+import com.meteoro.kanamobitest.ui.repositories.domain.interactor.GetRepositories
+import com.meteoro.kanamobitest.ui.repositories.domain.interactor.ShowLoadingRepositories
+import com.meteoro.kanamobitest.ui.repositories.domain.model.RepositoryData
 import rx.Observable
 import javax.inject.Inject
 
 class GetRepositoriesCoordinator @Inject constructor(
         private val showLoadingRepositories: ShowLoadingRepositories,
-        private val getRepositories: GetRepositories
-) : Observable.Transformer<String, RepositoryDataResponse> {
+        private val getRepositories: GetRepositories,
+        private val convertRepositories: ConvertRepositories
+) : Observable.Transformer<String, RepositoryData> {
 
-    override fun call(observable: Observable<String>?): Observable<RepositoryDataResponse>? {
+    override fun call(observable: Observable<String>?): Observable<RepositoryData>? {
         return observable
                 ?.compose(showLoadingRepositories)
                 ?.compose(getRepositories)
+                ?.compose(convertRepositories)
     }
 }

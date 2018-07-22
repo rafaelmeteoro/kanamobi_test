@@ -1,4 +1,4 @@
-package com.meteoro.kanamobitest.ui.repositories.domain
+package com.meteoro.kanamobitest.ui.repositories.domain.interactor
 
 import com.meteoro.kanamobitest.core.data.RepositoryDataResponse
 import com.meteoro.kanamobitest.core.data.remote.RepositoryApi
