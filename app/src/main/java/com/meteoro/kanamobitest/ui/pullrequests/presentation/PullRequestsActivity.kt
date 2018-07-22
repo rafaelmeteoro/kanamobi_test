@@ -2,6 +2,7 @@ package com.meteoro.kanamobitest.ui.pullrequests.presentation
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -13,6 +14,8 @@ import com.meteoro.kanamobitest.ui.pullrequests.di.PullRequestsModule
 import com.meteoro.kanamobitest.ui.pullrequests.domain.model.PullRequestData
 import com.meteoro.kanamobitest.ui.pullrequests.presentation.adapter.PullRequestsAdapter
 import com.meteoro.kanamobitest.ui.pullrequests.presentation.data.CallData
+import com.meteoro.kanamobitest.ui.pullrequests.presentation.data.PullRequestClickData
+import com.meteoro.kanamobitest.ui.pullrequests.presentation.listener.OnPullRequestClickListener
 import kotlinx.android.synthetic.main.activity_pull_requests.*
 import javax.inject.Inject
 
@@ -34,6 +37,17 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestsContract.View {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     @Inject
     lateinit var presenter: PullRequestsContract.Presenter
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Listener
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    private val onPullRequestClickListener = object : OnPullRequestClickListener {
+        override fun onClick(data: PullRequestClickData) {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(data.url)
+            startActivity(intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +85,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestsContract.View {
     private fun initializeAdapter() {
         if (pullRequestsList.adapter == null) {
             pullRequestsList.adapter = PullRequestsAdapter()
+            (pullRequestsList.adapter as PullRequestsAdapter).setListener(onPullRequestClickListener)
         }
     }
 
