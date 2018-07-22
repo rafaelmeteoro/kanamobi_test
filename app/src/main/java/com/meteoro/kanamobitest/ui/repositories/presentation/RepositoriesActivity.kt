@@ -9,6 +9,7 @@ import com.meteoro.kanamobitest.application.MyApplication
 import com.meteoro.kanamobitest.ui.repositories.di.DaggerRepositoriesComponent
 import com.meteoro.kanamobitest.ui.repositories.di.RepositoriesModule
 import com.meteoro.kanamobitest.ui.repositories.domain.model.RepositoryData
+import com.meteoro.kanamobitest.ui.repositories.presentation.adapter.RepositoriesAdapter
 import kotlinx.android.synthetic.main.activity_repositories.*
 import kotlinx.android.synthetic.main.component_loading_item.view.*
 import javax.inject.Inject
@@ -39,6 +40,7 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
         initializeToolbar()
         initializeInjection()
         initializeViews()
+        initializeAdapter()
         initializeContents()
     }
 
@@ -63,6 +65,12 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
         }
     }
 
+    private fun initializeAdapter() {
+        if (repositoriesList.adapter == null) {
+            repositoriesList.adapter = RepositoriesAdapter()
+        }
+    }
+
     private fun initializeContents() {
         presenter.initializeContents()
     }
@@ -73,6 +81,7 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
 
     override fun showData(data: RepositoryData) {
         stateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+        (repositoriesList.adapter as RepositoriesAdapter).addRepositories(data.repositories)
     }
 
     override fun showError() {
