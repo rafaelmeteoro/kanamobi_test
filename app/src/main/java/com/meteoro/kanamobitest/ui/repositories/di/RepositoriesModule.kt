@@ -41,4 +41,8 @@ class RepositoriesModule(private val activity: RepositoriesActivity) {
     @Provides
     @PerActivity
     fun convertRepositories(impl: ConvertRepositoriesImpl): ConvertRepositories = impl
+
+    @Provides
+    @PerActivity
+    fun showData(impl: ShowDataImpl): ShowData = impl
 }

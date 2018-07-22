@@ -8,7 +8,9 @@ import com.meteoro.kanamobitest.R
 import com.meteoro.kanamobitest.application.MyApplication
 import com.meteoro.kanamobitest.ui.repositories.di.DaggerRepositoriesComponent
 import com.meteoro.kanamobitest.ui.repositories.di.RepositoriesModule
+import com.meteoro.kanamobitest.ui.repositories.domain.model.RepositoryData
 import kotlinx.android.synthetic.main.activity_repositories.*
+import kotlinx.android.synthetic.main.component_loading_item.view.*
 import javax.inject.Inject
 
 class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
@@ -67,5 +69,13 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
 
     override fun showLoading() {
         stateView.viewState = MultiStateView.VIEW_STATE_LOADING
+    }
+
+    override fun showData(data: RepositoryData) {
+        stateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+    }
+
+    override fun showError() {
+        stateView.viewState = MultiStateView.VIEW_STATE_ERROR
     }
 }
