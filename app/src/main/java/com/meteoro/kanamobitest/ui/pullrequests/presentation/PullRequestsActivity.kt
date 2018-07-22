@@ -5,10 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.kennyc.view.MultiStateView
 import com.meteoro.kanamobitest.R
 import com.meteoro.kanamobitest.application.MyApplication
 import com.meteoro.kanamobitest.ui.pullrequests.di.DaggerPullRequestsComponent
 import com.meteoro.kanamobitest.ui.pullrequests.di.PullRequestsModule
+import com.meteoro.kanamobitest.ui.pullrequests.presentation.data.CallData
 import kotlinx.android.synthetic.main.activity_pull_requests.*
 import javax.inject.Inject
 
@@ -66,6 +68,12 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestsContract.View {
     private fun initializeContents() {
         val user = intent.getStringExtra(KEY_USER)
         val repo = intent.getStringExtra(KEY_REPO)
+
+        presenter.initializeContents(CallData(user, repo))
+    }
+
+    override fun showLoading() {
+        stateView.viewState = MultiStateView.VIEW_STATE_LOADING
     }
 
     companion object {

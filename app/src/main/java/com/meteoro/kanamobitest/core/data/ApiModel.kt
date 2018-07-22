@@ -18,3 +18,11 @@ class User(
         val login: String,
         val avatar_url: String
 )
+
+class PullRequestInfo(
+        val html_url: String,
+        val title: String,
+        val body: String,
+        val created_at: String,
+        val user: User
+)
