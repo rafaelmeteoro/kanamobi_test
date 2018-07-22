@@ -14,7 +14,10 @@ class ShowLoadingRepositoriesImpl @Inject constructor(
 ) : ShowLoadingRepositories {
 
     override fun call(observable: Observable<String>?): Observable<String>? {
-        return observable?.observeOn(uiScheduler)?.subscribeOn(uiScheduler)?.doOnNext(this::showLoading)
+        return observable
+                ?.subscribeOn(uiScheduler)
+                ?.observeOn(uiScheduler)
+                ?.doOnNext(this::showLoading)
     }
 
     private fun showLoading(ignore: String) {

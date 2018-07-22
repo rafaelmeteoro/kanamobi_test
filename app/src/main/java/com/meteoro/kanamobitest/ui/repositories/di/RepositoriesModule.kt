@@ -4,6 +4,8 @@ import android.arch.lifecycle.LifecycleOwner
 import com.meteoro.kanamobitest.core.di.PerActivity
 import com.meteoro.kanamobitest.core.lifecycle.AutomaticUnsubscriber
 import com.meteoro.kanamobitest.core.lifecycle.LifecycleUnsubscriber
+import com.meteoro.kanamobitest.ui.repositories.domain.GetRepositories
+import com.meteoro.kanamobitest.ui.repositories.domain.GetRepositoriesImpl
 import com.meteoro.kanamobitest.ui.repositories.domain.ShowLoadingRepositories
 import com.meteoro.kanamobitest.ui.repositories.domain.ShowLoadingRepositoriesImpl
 import com.meteoro.kanamobitest.ui.repositories.presentation.RepositoriesActivity
@@ -34,4 +36,8 @@ class RepositoriesModule(private val activity: RepositoriesActivity) {
     @Provides
     @PerActivity
     fun showLoadingRepositories(impl: ShowLoadingRepositoriesImpl): ShowLoadingRepositories = impl
+
+    @Provides
+    @PerActivity
+    fun getRepositories(impl: GetRepositoriesImpl): GetRepositories = impl
 }
