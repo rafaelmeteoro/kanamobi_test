@@ -5,6 +5,6 @@ import com.meteoro.kanamobitest.core.di.module.ActivityModule
 import dagger.Component
 
 @PerActivity
-@Component(dependencies = arrayOf(ApplicationComponent::class),
-        modules = arrayOf(ActivityModule::class))
+@Component(dependencies = [(ApplicationComponent::class)],
+        modules = [(ActivityModule::class)])
 interface ActivityComponent

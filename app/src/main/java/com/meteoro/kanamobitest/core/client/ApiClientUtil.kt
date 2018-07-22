@@ -13,7 +13,7 @@ class ApiClientUtil(private val builder: Builder) {
         val clientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
 
         if (builder.enableLogging()) {
-            val logging: HttpLoggingInterceptor = HttpLoggingInterceptor()
+            val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
             clientBuilder.addInterceptor(logging)
         }

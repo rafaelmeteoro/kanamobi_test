@@ -18,10 +18,10 @@ class GetRepositoriesImpl @Inject constructor(
 
     override fun call(observable: Observable<String>?): Observable<RepositoryDataResponse>? {
         return observable
-                ?.flatMap(this::getRepositories)
+                ?.flatMap { this.getRepositories() }
     }
 
-    private fun getRepositories(ignore: String): Observable<RepositoryDataResponse> {
+    private fun getRepositories(): Observable<RepositoryDataResponse> {
         return repositoryApi.getRepositories()
                 .subscribeOn(ioScheduler)
                 .observeOn(uiScheduler)

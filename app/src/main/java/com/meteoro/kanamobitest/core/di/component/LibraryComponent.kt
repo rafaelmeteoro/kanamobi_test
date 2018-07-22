@@ -10,7 +10,7 @@ import rx.Scheduler
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(LibraryModule::class, ApplicationModule::class))
+@Component(modules = [(LibraryModule::class), (ApplicationModule::class)])
 interface LibraryComponent {
 
     @UiScheduler

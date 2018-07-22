@@ -3,15 +3,17 @@ package com.meteoro.kanamobitest.ui.repositories.presentation
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.Log
 import com.kennyc.view.MultiStateView
 import com.meteoro.kanamobitest.R
 import com.meteoro.kanamobitest.application.MyApplication
+import com.meteoro.kanamobitest.core.listeners.EndlessRecyclerViewScrollListener
 import com.meteoro.kanamobitest.ui.repositories.di.DaggerRepositoriesComponent
 import com.meteoro.kanamobitest.ui.repositories.di.RepositoriesModule
 import com.meteoro.kanamobitest.ui.repositories.domain.model.RepositoryData
 import com.meteoro.kanamobitest.ui.repositories.presentation.adapter.RepositoriesAdapter
 import kotlinx.android.synthetic.main.activity_repositories.*
-import kotlinx.android.synthetic.main.component_loading_item.view.*
 import javax.inject.Inject
 
 class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
@@ -32,6 +34,8 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     @Inject
     lateinit var presenter: RepositoriesPresenter
+
+    private var repositoriesListener: EndlessRecyclerViewScrollListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,10 +62,12 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
     }
 
     private fun initializeViews() {
+        val linearLayout = LinearLayoutManager(this)
+        repositoriesListener = getRepositoriesListener(linearLayout)
         repositoriesList.apply {
             setHasFixedSize(true)
-            val linearLayout = LinearLayoutManager(this@RepositoriesActivity)
             layoutManager = linearLayout
+            addOnScrollListener(repositoriesListener)
         }
     }
 
@@ -73,6 +79,14 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
 
     private fun initializeContents() {
         presenter.initializeContents()
+    }
+
+    private fun getRepositoriesListener(layoutManager: LinearLayoutManager): EndlessRecyclerViewScrollListener {
+        return object : EndlessRecyclerViewScrollListener(layoutManager) {
+            override fun onRequestNextPage(page: Int, totalItemsCount: Int, view: RecyclerView) {
+                Log.d("RepositoryActivity", "Page ${page}")
+            }
+        }
     }
 
     override fun showLoading() {

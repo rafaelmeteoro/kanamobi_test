@@ -6,8 +6,8 @@ import com.meteoro.kanamobitest.ui.repositories.presentation.RepositoriesActivit
 import dagger.Component
 
 @PerActivity
-@Component(dependencies = arrayOf(LibraryComponent::class),
-        modules = arrayOf(RepositoriesModule::class))
+@Component(dependencies = [(LibraryComponent::class)],
+        modules = [(RepositoriesModule::class)])
 interface RepositoriesComponent {
     fun inject(activity: RepositoriesActivity)
 }

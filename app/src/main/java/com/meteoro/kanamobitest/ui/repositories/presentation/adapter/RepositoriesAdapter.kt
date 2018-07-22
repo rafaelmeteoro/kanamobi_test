@@ -10,11 +10,7 @@ import kotlinx.android.synthetic.main.repository_item.view.*
 
 class RepositoriesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var items: ArrayList<RepositoryItem>
-
-    init {
-        items = ArrayList()
-    }
+    private var items: ArrayList<RepositoryItem> = ArrayList()
 
     fun addRepositories(repositories: List<RepositoryItem>) {
 

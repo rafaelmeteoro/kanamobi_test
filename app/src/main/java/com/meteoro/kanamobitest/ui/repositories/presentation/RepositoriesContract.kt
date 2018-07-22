@@ -6,10 +6,10 @@ interface RepositoriesContract {
     interface View {
         fun showLoading()
         fun showData(data: RepositoryData)
-        fun showError();
+        fun showError()
     }
 
     interface Presenter {
-        fun initializeContents();
+        fun initializeContents()
     }
 }

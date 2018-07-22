@@ -17,10 +17,10 @@ class ShowLoadingRepositoriesImpl @Inject constructor(
         return observable
                 ?.subscribeOn(uiScheduler)
                 ?.observeOn(uiScheduler)
-                ?.doOnNext(this::showLoading)
+                ?.doOnNext { this.showLoading() }
     }
 
-    private fun showLoading(ignore: String) {
+    private fun showLoading() {
         view.showLoading()
     }
 }

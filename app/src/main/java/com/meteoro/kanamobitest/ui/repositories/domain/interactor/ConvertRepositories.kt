@@ -31,8 +31,7 @@ class ConvertRepositoriesImpl @Inject constructor(
                                 it.description, it.stargazers_count, it.forks_count)
                     }
 
-                    val repositoryData = RepositoryData(items)
-                    return@map repositoryData
+                    return@map RepositoryData(items)
                 }
     }
 }

@@ -4,7 +4,7 @@ import com.meteoro.kanamobitest.core.client.ApiClientUtil
 import com.meteoro.kanamobitest.core.data.RepositoryDataResponse
 import rx.Observable
 
-class RepositoryApiImpl(private val host: String) : RepositoryApi {
+class RepositoryApiImpl(host: String) : RepositoryApi {
 
     private val api: WebClientApi = ApiClientUtil.Builder()
             .enableLogging(true)
