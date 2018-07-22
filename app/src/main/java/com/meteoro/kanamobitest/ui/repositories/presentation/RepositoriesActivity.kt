@@ -9,10 +9,13 @@ import com.kennyc.view.MultiStateView
 import com.meteoro.kanamobitest.R
 import com.meteoro.kanamobitest.application.MyApplication
 import com.meteoro.kanamobitest.core.listeners.EndlessRecyclerViewScrollListener
+import com.meteoro.kanamobitest.ui.pullrequests.presentation.PullRequestsActivity
 import com.meteoro.kanamobitest.ui.repositories.di.DaggerRepositoriesComponent
 import com.meteoro.kanamobitest.ui.repositories.di.RepositoriesModule
 import com.meteoro.kanamobitest.ui.repositories.domain.model.RepositoryData
 import com.meteoro.kanamobitest.ui.repositories.presentation.adapter.RepositoriesAdapter
+import com.meteoro.kanamobitest.ui.repositories.presentation.data.RepositoryClickData
+import com.meteoro.kanamobitest.ui.repositories.presentation.listener.OnRepositoryClickListener
 import kotlinx.android.synthetic.main.activity_repositories.*
 import javax.inject.Inject
 
@@ -33,9 +36,20 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
     // Dependency Injection
     ////////////////////////////////////////////////////////////////////////////////////////////////
     @Inject
-    lateinit var presenter: RepositoriesPresenter
+    lateinit var presenter: RepositoriesContract.Presenter
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Listener
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     private var repositoriesListener: EndlessRecyclerViewScrollListener? = null
+
+    private val onRepositoryClickListener = object : OnRepositoryClickListener {
+        override fun onClick(data: RepositoryClickData) {
+            val intent = PullRequestsActivity.newIntent(this@RepositoriesActivity,
+                    data.user, data.repository)
+            startActivity(intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +88,7 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
     private fun initializeAdapter() {
         if (repositoriesList.adapter == null) {
             repositoriesList.adapter = RepositoriesAdapter()
+            (repositoriesList.adapter as RepositoriesAdapter).setListener(onRepositoryClickListener)
         }
     }
 
