@@ -7,12 +7,12 @@ import rx.Observable
 import rx.Scheduler
 import javax.inject.Inject
 
-interface ShowData : Observable.Transformer<RepositoryData, RepositoryData>
+interface ShowMoreData : Observable.Transformer<RepositoryData, RepositoryData>
 
-class ShowDataImpl @Inject constructor(
+class ShowMoreDataImpl @Inject constructor(
         @UiScheduler private val uiScheduler: Scheduler,
         private val view: RepositoriesContract.View
-) : ShowData {
+) : ShowMoreData {
 
     override fun call(observable: Observable<RepositoryData>?): Observable<RepositoryData>? {
         return observable
@@ -24,15 +24,11 @@ class ShowDataImpl @Inject constructor(
     }
 
     private fun showData(data: RepositoryData) {
-        if (data.repositories.isEmpty()) {
-            view.showEmpty()
-        } else {
-            view.showData(data)
-        }
+        view.showData(data)
     }
 
     private fun showError(throwable: Throwable) {
         throwable.printStackTrace()
-        view.showError()
+        view.showErrorToast()
     }
 }

@@ -6,14 +6,14 @@ import rx.Observable
 import rx.Scheduler
 import javax.inject.Inject
 
-interface ShowLoadingRepositories : Observable.Transformer<String, String>
+interface ShowLoadingRepositories : Observable.Transformer<Int, Int>
 
 class ShowLoadingRepositoriesImpl @Inject constructor(
         @UiScheduler private val uiScheduler: Scheduler,
         private val view: RepositoriesContract.View
 ) : ShowLoadingRepositories {
 
-    override fun call(observable: Observable<String>?): Observable<String>? {
+    override fun call(observable: Observable<Int>?): Observable<Int>? {
         return observable
                 ?.subscribeOn(uiScheduler)
                 ?.observeOn(uiScheduler)

@@ -8,7 +8,7 @@ import rx.Observable
 import rx.Scheduler
 import javax.inject.Inject
 
-interface GetRepositories : Observable.Transformer<String, RepositoryDataResponse>
+interface GetRepositories : Observable.Transformer<Int, RepositoryDataResponse>
 
 class GetRepositoriesImpl @Inject constructor(
         @UiScheduler private val uiScheduler: Scheduler,
@@ -16,13 +16,13 @@ class GetRepositoriesImpl @Inject constructor(
         private val repositoryApi: RepositoryApi
 ) : GetRepositories {
 
-    override fun call(observable: Observable<String>?): Observable<RepositoryDataResponse>? {
+    override fun call(observable: Observable<Int>?): Observable<RepositoryDataResponse>? {
         return observable
-                ?.flatMap { this.getRepositories() }
+                ?.flatMap(this::getRepositories)
     }
 
-    private fun getRepositories(): Observable<RepositoryDataResponse> {
-        return repositoryApi.getRepositories()
+    private fun getRepositories(page: Int): Observable<RepositoryDataResponse> {
+        return repositoryApi.getRepositories(page)
                 .subscribeOn(ioScheduler)
                 .observeOn(uiScheduler)
     }

@@ -4,5 +4,5 @@ import com.meteoro.kanamobitest.core.data.RepositoryDataResponse
 import rx.Observable
 
 interface RepositoryApi {
-    fun getRepositories(): Observable<RepositoryDataResponse>
+    fun getRepositories(page: Int): Observable<RepositoryDataResponse>
 }

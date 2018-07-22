@@ -12,7 +12,7 @@ class RepositoryApiImpl(host: String) : RepositoryApi {
             .build()
             .create(WebClientApi::class.java)
 
-    override fun getRepositories(): Observable<RepositoryDataResponse> {
-        return api.getRepositories()
+    override fun getRepositories(page: Int): Observable<RepositoryDataResponse> {
+        return api.getRepositories(page = page)
     }
 }

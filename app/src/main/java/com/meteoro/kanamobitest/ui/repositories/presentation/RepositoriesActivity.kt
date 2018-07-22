@@ -1,10 +1,10 @@
 package com.meteoro.kanamobitest.ui.repositories.presentation
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import com.kennyc.view.MultiStateView
 import com.meteoro.kanamobitest.R
 import com.meteoro.kanamobitest.application.MyApplication
@@ -84,13 +84,17 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
     private fun getRepositoriesListener(layoutManager: LinearLayoutManager): EndlessRecyclerViewScrollListener {
         return object : EndlessRecyclerViewScrollListener(layoutManager) {
             override fun onRequestNextPage(page: Int, totalItemsCount: Int, view: RecyclerView) {
-                Log.d("RepositoryActivity", "Page ${page}")
+                presenter.getMoreItems(page)
             }
         }
     }
 
     override fun showLoading() {
         stateView.viewState = MultiStateView.VIEW_STATE_LOADING
+    }
+
+    override fun showEmpty() {
+        stateView.viewState = MultiStateView.VIEW_STATE_EMPTY
     }
 
     override fun showData(data: RepositoryData) {
@@ -100,5 +104,10 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
 
     override fun showError() {
         stateView.viewState = MultiStateView.VIEW_STATE_ERROR
+    }
+
+    override fun showErrorToast() {
+        Snackbar.make(repositoriesList, R.string.component_error_label,
+                Snackbar.LENGTH_LONG).show()
     }
 }

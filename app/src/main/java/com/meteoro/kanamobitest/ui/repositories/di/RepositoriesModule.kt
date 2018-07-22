@@ -45,4 +45,8 @@ class RepositoriesModule(private val activity: RepositoriesActivity) {
     @Provides
     @PerActivity
     fun showData(impl: ShowDataImpl): ShowData = impl
+
+    @Provides
+    @PerActivity
+    fun showMoreData(impl: ShowMoreDataImpl): ShowMoreData = impl
 }

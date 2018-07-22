@@ -5,10 +5,10 @@ data class RepositoryData(
 )
 
 data class RepositoryItem(
-        val user: String,
-        val avatarUrl: String,
-        val nameRepository: String,
-        val description: String,
-        val starCount: Int,
-        val forksCount: Int
+        val user: String?,
+        val avatarUrl: String?,
+        val nameRepository: String?,
+        val description: String?,
+        val starCount: Int?,
+        val forksCount: Int?
 )
