@@ -3,6 +3,7 @@ package com.meteoro.kanamobitest.ui.repositories.presentation
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.kennyc.view.MultiStateView
 import com.meteoro.kanamobitest.R
 import com.meteoro.kanamobitest.application.MyApplication
 import com.meteoro.kanamobitest.ui.repositories.di.DaggerRepositoriesComponent
@@ -17,6 +18,10 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     private val repositoriesList by lazy {
         repositories_view
+    }
+
+    private val stateView by lazy {
+        state_view
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,5 +63,9 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
 
     private fun initializeContents() {
         presenter.initializeContents()
+    }
+
+    override fun showLoading() {
+        stateView.viewState = MultiStateView.VIEW_STATE_LOADING
     }
 }
