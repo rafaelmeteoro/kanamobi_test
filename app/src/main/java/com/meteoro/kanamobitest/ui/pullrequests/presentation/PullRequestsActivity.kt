@@ -11,6 +11,7 @@ import com.meteoro.kanamobitest.application.MyApplication
 import com.meteoro.kanamobitest.ui.pullrequests.di.DaggerPullRequestsComponent
 import com.meteoro.kanamobitest.ui.pullrequests.di.PullRequestsModule
 import com.meteoro.kanamobitest.ui.pullrequests.domain.model.PullRequestData
+import com.meteoro.kanamobitest.ui.pullrequests.presentation.adapter.PullRequestsAdapter
 import com.meteoro.kanamobitest.ui.pullrequests.presentation.data.CallData
 import kotlinx.android.synthetic.main.activity_pull_requests.*
 import javax.inject.Inject
@@ -41,6 +42,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestsContract.View {
         initializeToolbar()
         initializeInjection()
         initializeViews()
+        initializeAdapter()
         initializeContents()
     }
 
@@ -66,6 +68,12 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestsContract.View {
 
     }
 
+    private fun initializeAdapter() {
+        if (pullRequestsList.adapter == null) {
+            pullRequestsList.adapter = PullRequestsAdapter()
+        }
+    }
+
     private fun initializeContents() {
         val user = intent.getStringExtra(KEY_USER)
         val repo = intent.getStringExtra(KEY_REPO)
@@ -83,6 +91,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestsContract.View {
 
     override fun showData(data: PullRequestData) {
         stateView.viewState = MultiStateView.VIEW_STATE_CONTENT
+        (pullRequestsList.adapter as PullRequestsAdapter).addPullRequests(data.pullRequests)
     }
 
     override fun showError() {

@@ -17,7 +17,6 @@ class RepositoriesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var listener: OnRepositoryClickListener? = null
 
     fun addRepositories(repositories: List<RepositoryItem>) {
-
         val initPosition = items.size - 1
 
         items.addAll(repositories)
