@@ -3,6 +3,7 @@ package com.meteoro.kanamobitest.ui.repositories.presentation.coordinator
 import com.meteoro.kanamobitest.core.data.RepositoryDataResponse
 import com.meteoro.kanamobitest.ui.repositories.domain.interactor.ConvertRepositories
 import com.meteoro.kanamobitest.ui.repositories.domain.interactor.GetRepositories
+import com.meteoro.kanamobitest.ui.repositories.domain.interactor.ShowLoadingMoreRepositories
 import com.meteoro.kanamobitest.ui.repositories.domain.interactor.ShowMoreData
 import com.meteoro.kanamobitest.ui.repositories.domain.model.RepositoryData
 import org.junit.Before
@@ -14,6 +15,9 @@ import org.mockito.MockitoAnnotations
 import rx.Observable
 
 class GetMoreRepositoriesCoordinatorTest {
+
+    @Mock
+    lateinit var loadingMoreRepositories: ShowLoadingMoreRepositories
 
     @Mock
     lateinit var getRepositories: GetRepositories
@@ -31,6 +35,7 @@ class GetMoreRepositoriesCoordinatorTest {
         MockitoAnnotations.initMocks(this)
         impl = spy(
                 GetMoreRepositoriesCoordinator(
+                        loadingMoreRepositories,
                         getRepositories,
                         convertRepositories,
                         showMoreData
@@ -40,6 +45,8 @@ class GetMoreRepositoriesCoordinatorTest {
 
     @Test
     fun callGetMoreRepositoriesCoordinator_shouldExecuteInOrder() {
+        `when`(loadingMoreRepositories.call(ArgumentMatchers.any()))
+                .thenReturn(Observable.just(1))
         `when`(getRepositories.call(ArgumentMatchers.any()))
                 .thenReturn(Observable.just(mock(RepositoryDataResponse::class.java)))
         `when`(convertRepositories.call(ArgumentMatchers.any()))
@@ -48,6 +55,7 @@ class GetMoreRepositoriesCoordinatorTest {
                 .thenReturn(Observable.just(mock(RepositoryData::class.java)))
 
         val callOrder = inOrder(
+                loadingMoreRepositories,
                 getRepositories,
                 convertRepositories,
                 showMoreData
@@ -57,6 +65,7 @@ class GetMoreRepositoriesCoordinatorTest {
                 .compose(impl)
                 .subscribe()
 
+        callOrder.verify(loadingMoreRepositories).call(ArgumentMatchers.any())
         callOrder.verify(getRepositories).call(ArgumentMatchers.any())
         callOrder.verify(convertRepositories).call(ArgumentMatchers.any())
         callOrder.verify(showMoreData).call(ArgumentMatchers.any())

@@ -10,18 +10,18 @@ import org.mockito.MockitoAnnotations
 import rx.Observable
 import rx.schedulers.Schedulers
 
-class ShowMoreDataTest {
+class ShowLoadingMoreRepositoriesTest {
 
     @Mock
     lateinit var view: RepositoriesContract.View
 
-    lateinit var impl: ShowMoreData
+    lateinit var impl: ShowLoadingMoreRepositories
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         impl = spy(
-                ShowMoreDataImpl(
+                ShowLoadingMoreRepositoriesImpl(
                         Schedulers.immediate(),
                         view
                 )
@@ -29,18 +29,16 @@ class ShowMoreDataTest {
     }
 
     @Test
-    fun success_shuldShowData() {
-        val data = RepositoryData(listOf())
-
-        Observable.just(data)
+    fun callLoading_shouldViewLoadingMore() {
+        Observable.just(1)
                 .compose(impl)
                 .subscribe()
 
-        verify(view).showData(data)
+        verify(view).showLoadingMore()
+        verify(view, never()).showLoading()
         verify(view, never()).showEmpty()
         verify(view, never()).showError()
         verify(view, never()).showErrorToast()
-        verify(view, never()).showLoading()
-        verify(view, never()).showLoadingMore()
+        verify(view, never()).showData(RepositoryData(listOf()))
     }
 }
