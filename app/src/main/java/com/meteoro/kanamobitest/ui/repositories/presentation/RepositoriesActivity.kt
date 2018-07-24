@@ -108,6 +108,10 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
         stateView.viewState = MultiStateView.VIEW_STATE_LOADING
     }
 
+    override fun showLoadingMore() {
+        (repositoriesList.adapter as RepositoriesAdapter).addLoadingMore()
+    }
+
     override fun showEmpty() {
         stateView.viewState = MultiStateView.VIEW_STATE_EMPTY
     }
@@ -124,5 +128,6 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
     override fun showErrorToast() {
         Snackbar.make(repositoriesList, R.string.component_error_label,
                 Snackbar.LENGTH_LONG).show()
+        (repositoriesList.adapter as RepositoriesAdapter).removeLoadingMore()
     }
 }
