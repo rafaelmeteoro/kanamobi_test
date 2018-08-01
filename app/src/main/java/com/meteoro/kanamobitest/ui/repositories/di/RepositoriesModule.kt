@@ -36,10 +36,6 @@ class RepositoriesModule(private val activity: RepositoriesActivity) {
 
     @Provides
     @PerActivity
-    fun showLoadingMoreRepositories(impl: ShowLoadingMoreRepositoriesImpl): ShowLoadingMoreRepositories = impl
-
-    @Provides
-    @PerActivity
     fun getRepositories(impl: GetRepositoriesImpl): GetRepositories = impl
 
     @Provides

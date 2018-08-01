@@ -35,7 +35,6 @@ class ShowLoadingRepositoriesTest {
                 .subscribe()
 
         verify(view).showLoading()
-        verify(view, never()).showLoadingMore()
         verify(view, never()).showEmpty()
         verify(view, never()).showError()
         verify(view, never()).showErrorToast()
