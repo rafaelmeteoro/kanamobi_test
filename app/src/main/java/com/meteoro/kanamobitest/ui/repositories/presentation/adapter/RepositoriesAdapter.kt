@@ -48,19 +48,12 @@ class RepositoriesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         // insert repositories
         items.addAll(repositories)
-        notifyItemRangeChanged(initPosition, items.size)
-    }
-
-    fun addLoadingMore() {
-        val initPosition = items.size - 1
-        if (items.isNotEmpty() && items[initPosition].getViewType() != AdapterConstants.LOADING) {
-            items.add(loadingItem)
-            notifyItemRangeChanged(initPosition, items.size)
-        }
+        items.add(loadingItem)
+        notifyItemRangeChanged(initPosition, items.size + 1 /* plus loading item */)
     }
 
     fun removeLoadingMore() {
-        val initPosition = items.size - 1
+        val initPosition = items.size - 1;
         if (items.isNotEmpty() && items[initPosition].getViewType() == AdapterConstants.LOADING) {
             items.removeAt(initPosition)
             notifyItemRemoved(initPosition)

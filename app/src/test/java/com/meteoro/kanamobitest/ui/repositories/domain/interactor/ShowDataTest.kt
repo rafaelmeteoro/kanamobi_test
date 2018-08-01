@@ -46,7 +46,6 @@ class ShowDataTest {
         verify(view, never()).showError()
         verify(view, never()).showErrorToast()
         verify(view, never()).showLoading()
-        verify(view, never()).showLoadingMore()
     }
 
     @Test
@@ -61,7 +60,6 @@ class ShowDataTest {
         verify(view, never()).showError()
         verify(view, never()).showErrorToast()
         verify(view, never()).showLoading()
-        verify(view, never()).showLoadingMore()
         verify(view, never()).showData(data)
     }
 }

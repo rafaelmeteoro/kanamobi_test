@@ -108,10 +108,6 @@ class RepositoriesActivity : AppCompatActivity(), RepositoriesContract.View {
         stateView.viewState = MultiStateView.VIEW_STATE_LOADING
     }
 
-    override fun showLoadingMore() {
-        (repositoriesList.adapter as RepositoriesAdapter).addLoadingMore()
-    }
-
     override fun showEmpty() {
         stateView.viewState = MultiStateView.VIEW_STATE_EMPTY
     }
