@@ -1,4 +1,4 @@
-package com.meteoro.kanamobitest.core.lifecycle
+package com.meteoro.kanamobitest.core.lifecycles
 
 import android.arch.lifecycle.LifecycleObserver
 import rx.Subscription

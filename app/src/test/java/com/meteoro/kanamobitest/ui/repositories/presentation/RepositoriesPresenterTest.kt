@@ -1,6 +1,6 @@
 package com.meteoro.kanamobitest.ui.repositories.presentation
 
-import com.meteoro.kanamobitest.core.lifecycle.AutomaticUnsubscriber
+import com.meteoro.kanamobitest.core.lifecycles.AutomaticUnsubscriber
 import com.meteoro.kanamobitest.ui.repositories.domain.model.RepositoryData
 import com.meteoro.kanamobitest.ui.repositories.presentation.coordinator.GetMoreRepositoriesCoordinator
 import com.meteoro.kanamobitest.ui.repositories.presentation.coordinator.GetRepositoriesCoordinator

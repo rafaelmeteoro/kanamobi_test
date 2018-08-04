@@ -2,8 +2,8 @@ package com.meteoro.kanamobitest.ui.pullrequests.di
 
 import android.arch.lifecycle.LifecycleOwner
 import com.meteoro.kanamobitest.core.di.PerActivity
-import com.meteoro.kanamobitest.core.lifecycle.AutomaticUnsubscriber
-import com.meteoro.kanamobitest.core.lifecycle.LifecycleUnsubscriber
+import com.meteoro.kanamobitest.core.lifecycles.AutomaticUnsubscriber
+import com.meteoro.kanamobitest.core.lifecycles.LifecycleUnsubscriber
 import com.meteoro.kanamobitest.ui.pullrequests.domain.interactor.*
 import com.meteoro.kanamobitest.ui.pullrequests.presentation.PullRequestsActivity
 import com.meteoro.kanamobitest.ui.pullrequests.presentation.PullRequestsContract

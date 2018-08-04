@@ -1,8 +1,9 @@
-package com.meteoro.kanamobitest.core.lifecycle
+package com.meteoro.kanamobitest.core.lifecycles
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.OnLifecycleEvent
+import com.meteoro.kanamobitest.core.lifecycles.AutomaticUnsubscriber
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject

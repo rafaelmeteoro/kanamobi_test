@@ -2,8 +2,8 @@ package com.meteoro.kanamobitest.ui.repositories.di
 
 import android.arch.lifecycle.LifecycleOwner
 import com.meteoro.kanamobitest.core.di.PerActivity
-import com.meteoro.kanamobitest.core.lifecycle.AutomaticUnsubscriber
-import com.meteoro.kanamobitest.core.lifecycle.LifecycleUnsubscriber
+import com.meteoro.kanamobitest.core.lifecycles.AutomaticUnsubscriber
+import com.meteoro.kanamobitest.core.lifecycles.LifecycleUnsubscriber
 import com.meteoro.kanamobitest.ui.repositories.domain.interactor.*
 import com.meteoro.kanamobitest.ui.repositories.presentation.RepositoriesActivity
 import com.meteoro.kanamobitest.ui.repositories.presentation.RepositoriesContract

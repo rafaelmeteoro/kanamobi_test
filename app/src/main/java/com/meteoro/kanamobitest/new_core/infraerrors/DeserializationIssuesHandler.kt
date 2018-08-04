@@ -1,9 +1,9 @@
-package com.meteoro.kanamobitest.core.infraerrors
+package com.meteoro.kanamobitest.new_core.infraerrors
 
 import com.google.gson.JsonIOException
 import com.google.gson.JsonParseException
 import com.google.gson.JsonSyntaxException
-import com.meteoro.kanamobitest.core.behaviours.errors.UnexpectedResponseError
+import com.meteoro.kanamobitest.new_core.behaviours.erros.UnexpectedResponseError
 import io.reactivex.Flowable
 import io.reactivex.FlowableTransformer
 import org.reactivestreams.Publisher

@@ -1,7 +1,7 @@
-package com.meteoro.kanamobitest.core.infraerrors
+package com.meteoro.kanamobitest.new_core.infraerrors
 
-import com.meteoro.kanamobitest.core.behaviours.errors.ContentNotFoundError
-import com.meteoro.kanamobitest.core.behaviours.errors.UnexpectedResponseError
+import com.meteoro.kanamobitest.new_core.behaviours.erros.ContentNotFoundError
+import com.meteoro.kanamobitest.new_core.behaviours.erros.UnexpectedResponseError
 import io.reactivex.Flowable
 import io.reactivex.FlowableTransformer
 import org.reactivestreams.Publisher

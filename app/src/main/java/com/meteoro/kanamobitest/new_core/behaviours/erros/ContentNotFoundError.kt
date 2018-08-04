@@ -1,4 +1,4 @@
-package com.meteoro.kanamobitest.core.behaviours.errors
+package com.meteoro.kanamobitest.new_core.behaviours.erros
 
 class ContentNotFoundError : RuntimeException() {
 

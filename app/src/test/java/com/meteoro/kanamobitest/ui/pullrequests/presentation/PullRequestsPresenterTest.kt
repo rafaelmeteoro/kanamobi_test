@@ -1,6 +1,6 @@
 package com.meteoro.kanamobitest.ui.pullrequests.presentation
 
-import com.meteoro.kanamobitest.core.lifecycle.AutomaticUnsubscriber
+import com.meteoro.kanamobitest.core.lifecycles.AutomaticUnsubscriber
 import com.meteoro.kanamobitest.ui.pullrequests.domain.model.PullRequestData
 import com.meteoro.kanamobitest.ui.pullrequests.presentation.coordinator.GetPullRequestsCoordinator
 import com.meteoro.kanamobitest.ui.pullrequests.presentation.data.CallData

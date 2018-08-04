@@ -1,4 +1,4 @@
-package com.meteoro.kanamobitest.core.lifecycle
+package com.meteoro.kanamobitest.new_core.lifecycles
 
 import io.reactivex.Flowable
 import org.assertj.core.api.Assertions

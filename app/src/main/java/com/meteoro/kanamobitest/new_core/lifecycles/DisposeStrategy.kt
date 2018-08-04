@@ -1,4 +1,4 @@
-package com.meteoro.kanamobitest.core.lifecycle
+package com.meteoro.kanamobitest.new_core.lifecycles
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver

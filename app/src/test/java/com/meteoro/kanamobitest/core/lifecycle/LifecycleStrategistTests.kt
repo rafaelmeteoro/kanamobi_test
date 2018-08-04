@@ -1,3 +1,0 @@
-package com.meteoro.kanamobitest.core.lifecycle
-
-class LifecycleStrategistTests
